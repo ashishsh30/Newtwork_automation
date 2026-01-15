@@ -1,0 +1,202 @@
+Building configuration...
+
+Current configuration : 4230 bytes
+!
+! Last configuration change at 05:54:07 EST Thu Jan 15 2026
+!
+version 16.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+clock timezone EST 5 30
+!
+!
+!
+!
+!
+!
+!
+ip name-server 8.8.8.8
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3315133624
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3315133624
+ revocation-check none
+ rsakeypair TP-self-signed-3315133624
+!
+!
+crypto pki certificate chain TP-self-signed-3315133624
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33333135 31333336 3234301E 170D3235 31313238 30373234 
+  30325A17 0D333030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 33313531 
+  33333632 34308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100BA4A CAAB41E6 E0A459CE 9406AD73 626E4A4F 824CB5FE 8A27D779 
+  51933E12 652AC2F0 2F2B727C 562BB824 3A0DD215 B74A44B3 5337EB21 244FDAC7 
+  8967C211 E8AE5E62 2D4D67B8 48D250B8 6A94CAD0 EB0DE06D 0D5A5E6D 9800BEB7 
+  08D05AF3 274BD124 0143D4DC A11A4009 284D1C10 7215A066 87C114D0 A61DECBD 
+  8350B446 B551C120 499A877F 459E9762 D85B0831 D2F0918C 85322542 70835F9B 
+  57B46F0E 2204B67F 45D83159 846C833F AB5285D9 1ED63369 44093195 A097F413 
+  C6C63886 738EB045 E08AAA86 C86E5965 7AE61B61 CD0695E1 07D7A756 10A39BCD 
+  351BABD6 7F29A877 9D074397 3991807F 08E3D557 EADE6DED 9A260D98 99245CE7 
+  A1BE8AD4 01C50203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 141A7B66 4685AD18 B6807F28 A75ABC5E C1585AEE 
+  E7301D06 03551D0E 04160414 1A7B6646 85AD18B6 807F28A7 5ABC5EC1 585AEEE7 
+  300D0609 2A864886 F70D0101 05050003 82010100 7CF2767E 172AD5D1 C6DCBD34 
+  21C5DE09 FE2ED09A 784B31A6 9D989EAD 3010D521 E296149C B7E17512 22440E08 
+  62ED599D 98362943 D075E9B7 6373C9C2 4D491521 3CDB19F3 097A6E46 9589E8B0 
+  77566151 9DE6AADB 3F769804 5FB75F5A EDE53416 EC2CF71C 8C81AB58 DA19AD51 
+  E04A2662 F8D8D154 1C02CB15 666A9572 98C1D67F C14F1ABB 03E9C0E1 6052A3B1 
+  70152463 379927C6 CF1175BA E935BB07 E13E987A 4382C4A0 559091BA A239ADE4 
+  13C36CE9 4CC97995 4022AF96 8A98CA65 48896DDB 78B8F518 372B4304 0E0C8D42 
+  41DAF64C 8DC22DF0 10051BA4 595C96A0 CBA40B4E 5BEDAC50 2721B888 016B1613 
+  0216563C 5E0082DF 7BAB52C9 D66BD71D 68CF7200
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 907FCKCLMJU
+no license smart enable
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+archive
+ log config
+  logging enable
+  notify syslog contenttype plaintext
+  hidekeys
+!
+!
+!
+username nw_automation privilege 15 secret 5 $1$K.72$qFSDzgAOfpTEu3Q6HJXET/
+username test2 privilege 15 secret 5 $1$hqXe$htPQ3Jxe5eHb/PQh8aOz50
+username cdw privilege 15 secret 5 $1$z12E$wOkibv57uZI9JGRlKhIcK1
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ description Connected to Management
+ ip address 192.168.1.104 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description connected to C8K1
+ ip address 10.10.10.10 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ description Connected to CSR2
+ ip address 30.30.30.30 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet4
+ ip address 40.40.40.40 255.255.255.0
+ ip helper-address 1.1.1.1
+ ip helper-address 2.2.2.2
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+router bgp 100
+ bgp log-neighbor-changes
+ neighbor 13.13.13.13 remote-as 1
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip http client source-interface GigabitEthernet1
+ip tftp source-interface GigabitEthernet1
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ login local
+!
+ntp server 1.1.1.1
+!
+!
+!
+!
+!
+end
