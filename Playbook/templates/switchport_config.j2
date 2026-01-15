@@ -1,0 +1,26 @@
+{% for interface in switchport_details %}
+{% if interface.type == 'management' %}
+interface {{interface.name}}
+ description {{interface.description}}
+ negotiation auto
+ no shutdown
+
+{% elif interface.type == 'access' %}
+interface {{interface.name}}
+ description {{interface.description}}
+ switchport mode access
+ switchport access vlan {{interface.vlan}}
+ negotiation auto
+ no shutdown
+
+
+{% elif interface.type == 'trunk' %}
+interface {{interface.name}}
+ description {{interface.description}}
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ negotiation auto
+ no shutdown
+
+ {% endif %}
+ {% endfor %}
