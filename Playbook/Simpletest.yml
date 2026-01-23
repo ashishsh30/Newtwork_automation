@@ -1,15 +1,15 @@
 ---
-  -  name: Demo on simple yml program 
-     hosts: ciscoIOS
-     gather_facts: false
-     tasks:
-       -  name: Fetching interface details 
-          cisco.ios.ios_command:
-            commands:
-              -  show ip interface brief 
-          register: output
-      -   name: Display output 
-            -  msg: "{{output}}"
+  - name: Demo on simple test YAML script
+    hosts: ciscoIOS
+    gather_facts: no
+    tasks:
+      - name: capturing inetrface details
+        cisco.ios.ios_command:
+          commands:
+            - show ip interace brief 
+        register: output
+      - name: Display output 
+          msg: "{{output}}"
 
       
     
