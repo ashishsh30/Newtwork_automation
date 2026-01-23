@@ -9,6 +9,7 @@
             - show ip interace brief 
         register: output
       - name: Display output 
+        debug:
           msg: "{{output}}"
 
       
