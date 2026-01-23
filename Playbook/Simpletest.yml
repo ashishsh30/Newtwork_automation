@@ -3,12 +3,12 @@
      hosts: ciscoIOS
      gather_facts: false
      tasks:
-       -  name: Fetching interface details
+       -  name: Fetching interface details 
           cisco.ios.ios_command:
             commands:
               -  show ip interface brief 
           register: output
-      -  name: Display output 
+      -   name: Display output 
             -  msg: "{{output}}"
 
       
