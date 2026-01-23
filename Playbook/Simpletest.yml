@@ -6,7 +6,7 @@
       - name: capturing inetrface details
         cisco.ios.ios_command:
           commands:
-            - show ip interace brief 
+            - show ip interface brief 
         register: output
       - name: Display output 
         debug:
