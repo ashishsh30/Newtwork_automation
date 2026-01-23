@@ -1,0 +1,9 @@
+---
+  -  name: Demo on job survey demo
+     hosts: CSR1
+     gather_facts: false
+     tasks:
+       -  name: Configure local username and pass
+          cisco_ios.ios_config:
+            lines:
+              -  username {{new_user}} privilege 15 secret {{new_pass}}
