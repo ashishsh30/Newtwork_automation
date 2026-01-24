@@ -3,7 +3,7 @@
      hosts: CSR1
      gather_facts: false
      tasks:
-       - name Save config after modify the usernasme table 
+       - name: Save config after modify the usernasme table 
          cisco.ios.ios_config:
          save_when: changed
     
