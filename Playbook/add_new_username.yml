@@ -1,5 +1,5 @@
 ---
-  - name: Create new local username
+  - name: Create new local username and remove old username
     hosts: CSR1
     gather_facts: false
     tasks:
@@ -10,4 +10,3 @@
           password_type: secret
           privilege: 15
           state: present
-     
